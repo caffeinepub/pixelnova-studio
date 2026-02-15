@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a marketing website for PixelNova Studio using only supported platform features: Internet Identity login, Stripe payments, dark/electric-blue premium design, services/pricing/portfolio/legal pages, free-trial flow, post-login dashboard, funnel pages, and a simple non-AI chatbot/FAQ widget. Display manual UPI number only as text (no direct UPI processing).",
+  "architectural_notes": [
+    "Use only platform-supported integrations: Internet Identity for auth and Stripe for payments; show UPI number only as informational text.",
+    "Email sending and external AI/LLM integrations are not used; chatbot is rule-based/FAQ-style."
+  ],
+  "known_issues": [
+    "Previous build attempt failed with platform error: \"AI couldn't process your request successfully\"; user requested to retry."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Required Images\n- PixelNova Studio wordmark logo, modern geometric style, electric-blue glow on dark background (pixelnova-logo.dim_512x512.png)\n- Abstract dark gradient hero background with subtle electric-blue neon glow and soft noise texture (hero-bg.dim_1920x1080.png)\n- Set of four simple line icons with neon-blue glow: website, logo, presentation, business card (service-icons-sprite.dim_1024x256.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-marketing-website-for-pixelnova-studio-with-a-premium-dark-theme-and-electric-blue-accents-using-consistent-typography-spacing-and-motion-across-all-pages",
+      "title": "Create a responsive marketing website for “PixelNova Studio” with a premium dark theme and electric-blue accents, using consistent typography, spacing, and motion across all pages.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-authentication-using-internet-identity-only-requiring-login-before-a-user-can-claim-the-free-trial-or-submit-an-order-after-successful-login-redirect-the-user-to-a-dashboard-that-displays-the-user-identity-info-available-from-internet-identity",
+      "title": "Implement authentication using Internet Identity only, requiring login before a user can claim the free trial or submit an order; after successful login, redirect the user to a Dashboard that displays the user identity info available from Internet Identity.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-home-page-with-hero-section-headline-subheadline-primary-ctas-start-my-project-view-portfolio-why-choose-us-highlights-services-preview-cards-pricing-preview-reviews-preview-and-a-final-cta-section",
+      "title": "Build the Home page with: hero section (headline/subheadline), primary CTAs (Start My Project, View Portfolio), “Why Choose Us” highlights, services preview cards, pricing preview, reviews preview, and a final CTA section.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-services-page-showing-the-four-services-website-design-logo-design-presentation-design-business-card-design-as-animated-cards-each-with-description-price-where-specified-delivery-time-and-an-order-button-that-starts-the-order-flow",
+      "title": "Create a Services page showing the four services (Website Design, Logo Design, Presentation Design, Business Card Design) as animated cards, each with description, price (where specified), delivery time, and an Order button that starts the order flow.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-pricing-page-that-clearly-presents-the-standard-website-package-and-a-highlighted-premium-website-package-with-the-listed-features-and-prices-include-a-stripe-checkout-action-for-paid-packages-services",
+      "title": "Create a Pricing page that clearly presents the Standard Website Package and a highlighted Premium Website Package with the listed features and prices; include a Stripe checkout action for paid packages/services.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-one-time-free-website-trial-claim-flow-for-authenticated-users-show-a-claim-free-trial-button-record-the-claim-server-side-and-after-claiming-show-an-upgrade-prompt-that-encourages-purchasing-premium-to-remove-the-watermark-no-email-automation",
+      "title": "Implement a one-time “Free Website Trial” claim flow for authenticated users: show a “Claim Free Trial” button, record the claim server-side, and after claiming show an upgrade prompt that encourages purchasing Premium to remove the watermark (no email automation).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-portfolio-page-with-filter-buttons-all-websites-logos-presentations-business-cards-and-a-grid-of-items-including-the-specified-example-names-include-hover-interaction-with-a-get-similar-design-button-and-a-cta-to-order",
+      "title": "Create a Portfolio page with filter buttons (All | Websites | Logos | Presentations | Business Cards) and a grid of items including the specified example names; include hover interaction with a “Get Similar Design” button and a CTA to order.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-legal-pages-terms-conditions-refund-policy-and-privacy-policy-including-an-explicit-statement-no-refunds-once-design-work-has-started",
+      "title": "Add Legal pages: Terms & Conditions, Refund Policy, and Privacy Policy, including an explicit statement: “No refunds once design work has started.”",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-order-request-flow-website-form-pages-not-email-authenticated-users-submit-project-details-select-package-service-and-upload-a-payment-screenshot-if-they-choose-to-pay-manually-store-the-order-in-the-backend-and-show-it-in-the-user-dashboard",
+      "title": "Add an order/request flow (website form pages, not email): authenticated users submit project details, select package/service, and upload a payment screenshot if they choose to pay manually; store the order in the backend and show it in the user Dashboard.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-manual-upi-payment-number-9911553387-as-informational-text-on-relevant-pages-e-g-pricing-order-with-clear-wording-that-work-begins-after-payment-confirmation-do-not-implement-any-upi-payment-number-processing",
+      "title": "Display the manual UPI/payment number “9911553387” as informational text on relevant pages (e.g., Pricing/Order), with clear wording that work begins after payment confirmation; do not implement any UPI/payment-number processing.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-non-ai-chatbot-faq-widget-in-the-bottom-right-that-opens-a-guided-sales-assistant-flow-using-fixed-scripts-greeting-qualification-questions-package-suggestion-rules-free-trial-upsell-payment-reminder-and-lead-capture-name-email-phone-store-captured-leads-in-the-backend",
+      "title": "Add a simple non-AI chatbot/FAQ widget in the bottom-right that opens a guided sales assistant flow using fixed scripts: greeting, qualification questions, package suggestion rules, free trial upsell, payment reminder, and lead capture (name/email/phone). Store captured leads in the backend.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-basic-funnel-pages-flow-landing-cta-lead-capture-form-thank-you-confirmation-page-persist-the-lead-and-show-a-confirmation-message-on-completion-no-email-sending",
+      "title": "Implement basic funnel pages/flow: Landing CTA → Lead capture form → Thank-you/confirmation page; persist the lead and show a confirmation message on completion (no email sending).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-post-login-dashboard-page-that-shows-free-trial-status-claimed-not-claimed-a-list-of-the-user-s-submitted-orders-with-timestamps-status-and-a-section-listing-the-user-s-submitted-leads-if-any",
+      "title": "Create a post-login Dashboard page that shows: free-trial status (claimed/not claimed), a list of the user’s submitted orders with timestamps/status, and a section listing the user’s submitted leads (if any).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-site-navigation-header-footer-linking-to-home-services-pricing-portfolio-legal-pages-and-authentication-controls-sign-in-sign-out-ensure-basic-seo-metadata-page-titles-descriptions-for-core-pages",
+      "title": "Add site navigation (header/footer) linking to Home, Services, Pricing, Portfolio, Legal pages, and authentication controls (Sign in/Sign out); ensure basic SEO metadata (page titles/descriptions) for core pages.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-coherent-distinctive-visual-theme-direction-still-dark-electric-blue-with-specific-component-styling-rules-buttons-cards-sections-glow-gradients-and-apply-it-consistently-without-introducing-new-product-features",
+      "title": "Add a coherent, distinctive visual theme direction (still dark + electric blue) with specific component styling rules (buttons, cards, sections, glow/gradients) and apply it consistently without introducing new product features.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "PixelNova Studio marketing website (not an app) with dark + electric blue premium agency design and responsive pages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Authentication via Internet Identity only, with post-login dashboard showing profile and trial/order tracking",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Stripe checkout payments for paid packages; optionally display UPI/payment number as text only (no processing)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "One-time free website trial flow with trial counter and upgrade prompt after trial",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Core pages: Home, Services, Pricing, Portfolio (with filters), and Legal (Terms/Privacy/Refund)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Simple non-AI chatbot/FAQ widget with fixed messages for sales guidance and lead capture",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Basic funnel pages (landing → form/lead capture → thank-you/confirmation)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add backend data models and APIs to track per-user: (a) whether the one-time free trial has been claimed, (b) a list of submitted orders (package/service, notes, timestamp, payment status), and (c) submitted leads from funnel/chatbot forms.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "PixelNova Studio",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

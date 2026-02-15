@@ -1,0 +1,86 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T04:49:02.691Z",
+  "summary": "Diff adds a Motoko single-actor backend with per-user state (profiles, free-trial claimed status, orders, leads/forms/chatbot leads) plus a React/TanStack Router frontend with core routes, Internet Identity auth hooks, dashboard UI, chatbot widget, manual payment info component, and free-trial claim UI. Several BuildRequest items cannot be verified due to truncated/omitted page files; one unrequested external promo link is clearly added.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "After successful login, redirect the user to a Dashboard that displays the user identity info available from Internet Identity.",
+      "reason": "The diff shows an Internet Identity login hook and a /dashboard route, but there is no evidence in the shown files that login triggers a redirect to /dashboard, nor that the Dashboard displays Internet Identity identifier details (e.g., principal).",
+      "evidence": [
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/hooks/useInternetIdentity.ts"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "requirement": "The page includes the message “Work will begin only after payment confirmation.” (English).",
+      "reason": "ManualPaymentInfo includes the sentence but prefixed with a warning symbol, so the exact required message string is not shown as-is in the diff excerpt.",
+      "evidence": [
+        "frontend/src/components/payments/ManualPaymentInfo.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Footer promotional link to caffeine.ai with UTM parameters.",
+      "reason": "Not requested in the BuildRequest; adds third-party promotion/link in site footer.",
+      "evidence": [
+        "frontend/src/components/layout/SiteFooter.tsx"
+      ]
+    },
+    {
+      "description": "Chatbot UI is labeled 'Nova AI Assistant' and uses AI-themed wording/emojis.",
+      "reason": "BuildRequest explicitly asks for a non-AI, deterministic scripted FAQ widget; while the script is deterministic, branding it as an AI assistant is an unrequested/possibly conflicting presentation.",
+      "evidence": [
+        "frontend/src/components/chatbot/ChatbotWidget.tsx",
+        "frontend/src/components/chatbot/chatbotScript.ts"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/chatbot/ChatbotWidget.tsx",
+    "frontend/src/components/chatbot/chatbotScript.ts",
+    "frontend/src/components/layout/SiteFooter.tsx",
+    "frontend/src/components/layout/SiteHeader.tsx",
+    "frontend/src/components/layout/SiteLayout.tsx",
+    "frontend/src/components/payments/ManualPaymentInfo.tsx",
+    "frontend/src/components/trial/FreeTrialClaimCard.tsx",
+    "frontend/src/components/trial/UpgradePromptModal.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/usePageMeta.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useStripeCheckout.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/DashboardPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/OrderPage.tsx",
+    "frontend/src/pages/PaymentFailurePage.tsx",
+    "frontend/src/pages/PaymentSuccessPage.tsx",
+    "frontend/src/pages/PortfolioPage.tsx",
+    "frontend/src/pages/PricingPage.tsx",
+    "frontend/src/pages/ServicesPage.tsx",
+    "frontend/src/pages/funnel/FunnelLandingPage.tsx",
+    "frontend/src/pages/funnel/LeadCapturePage.tsx",
+    "frontend/src/pages/funnel/ThankYouPage.tsx",
+    "frontend/src/pages/legal/PrivacyPolicyPage.tsx",
+    "frontend/src/pages/legal/RefundPolicyPage.tsx",
+    "frontend/src/pages/legal/TermsPage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

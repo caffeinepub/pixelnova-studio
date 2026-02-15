@@ -1,0 +1,330 @@
+{
+  "kind": "build_request",
+  "title": "PixelNova Studio marketing website (Internet Identity + Stripe + free trial + portfolio + funnel + FAQ bot)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a responsive marketing website for “PixelNova Studio” with a premium dark theme and electric-blue accents, using consistent typography, spacing, and motion across all pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a modern, high-converting, premium agency-level website for my digital design company.",
+          "Theme:\nDark + Electric Blue\n\nFonts:\nPoppins + Open Sans\n\nStyle:\nPremium modern agency\n\nAnimations:\nSmooth fade-in"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All core pages (Home, Services, Pricing, Portfolio, Legal, Funnel, Dashboard) share a consistent visual system (colors, typography, components).",
+        "Design is fully responsive (mobile/tablet/desktop) and uses smooth, non-distracting animations (e.g., fade/slide on section reveal)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement authentication using Internet Identity only, requiring login before a user can claim the free trial or submit an order; after successful login, redirect the user to a Dashboard that displays the user identity info available from Internet Identity.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-3"
+        ],
+        "quotes": [
+          "Internet Identity login only (this is the only supported method)",
+          "Before accessing services or placing orders:\n\nUsers must login ...\n\nNo guest access allowed.\n\nAfter login:\n• Redirect to User Dashboard\n• Show profile name & email\n• Track orders\n• Track free trial usage"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Unauthenticated users can browse marketing pages but are prompted to sign in when attempting actions that require an account (claim trial, submit order/lead).",
+        "After login, the user lands on a Dashboard page that shows their logged-in status and identifier details available via Internet Identity.",
+        "Logout returns the user to a public page (e.g., Home)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add backend data models and APIs to track per-user: (a) whether the one-time free trial has been claimed, (b) a list of submitted orders (package/service, notes, timestamp, payment status), and (c) submitted leads from funnel/chatbot forms.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Track orders\n• Track free trial usage",
+          "Store in CRM Dashboard.",
+          "Collect lead info:\nName\nEmail\nPhone"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend persists trial-claimed state per authenticated user and prevents claiming more than once.",
+        "Backend persists orders per authenticated user and can list them for display on the Dashboard.",
+        "Backend persists leads and allows an authenticated admin view OR a basic list endpoint suitable for a simple internal CRM view (no external integrations)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build the Home page with: hero section (headline/subheadline), primary CTAs (Start My Project, View Portfolio), “Why Choose Us” highlights, services preview cards, pricing preview, reviews preview, and a final CTA section.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "HOMEPAGE STRUCTURE\n\n## 1️⃣ Hero Section\n\nHeadline:\n“Premium Business Websites Delivered in Just 2 Days.”\n\nSubheadline:\nModern, Affordable, and Designed to Grow Your Brand.\n\nButtons:\n🔵 Start My Project\n⚪ View Portfolio",
+          "## 2️⃣ Why Choose Us\n\n⚡ 2-Day Delivery\n💰 Affordable Pricing\n🎨 Modern Creative Designs\n📱 Fully Responsive",
+          "# 🔥 FINAL CTA SECTION\n\nHeadline:\nReady to Launch Your Business in Just 2 Days?\n\nButton:\n🔥 Start My Project Now"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home page includes the specified hero text and the two CTAs.",
+        "Home page includes the four “Why Choose Us” items.",
+        "Home page includes a reviews section showing multiple review cards (seeded static content is acceptable)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create a Services page showing the four services (Website Design, Logo Design, Presentation Design, Business Card Design) as animated cards, each with description, price (where specified), delivery time, and an Order button that starts the order flow.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Services Section (Animated Cards)\n\n• Website Design\n• Logo Design – $10\n• Presentation Design – $5\n• Business Card Design – $10\n\nEach card:\n• Short description\n• Price\n• Delivery time\n• Order button"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Services page lists all four services and shows the specified prices for non-website services.",
+        "Clicking an Order button navigates to an order form/checkout step for that selected service/package."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create a Pricing page that clearly presents the Standard Website Package and a highlighted Premium Website Package with the listed features and prices; include a Stripe checkout action for paid packages/services.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "## 🌐 Standard Website Package\n\n$199 (₹18,000 approx.)\n• Up to 5 pages\n• Mobile responsive\n• Basic SEO\n• 2-Day delivery\n\n## 👑 Premium Website Package (Highlighted)\n\n$300 (₹27,000 approx.)\n\n• Up to 10 pages\n• Premium UI/UX\n• Advanced SEO\n• Speed optimization\n• Contact form\n• Social media integration\n• Premium animations\n• Priority support\n• 2-Day fast delivery\n\nHighlight:\n⭐ Most Recommended\n👑 Best Value",
+          "Payments:\n• Stripe checkout button for all paid packages"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Pricing page displays both packages with the listed feature bullets and visually highlights Premium as recommended/best value.",
+        "A Stripe checkout flow is available from the Pricing page (or a clear path to it) for paid offerings.",
+        "If Stripe is not configured at runtime, the UI displays a clear configuration/error state instead of failing silently."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement a one-time “Free Website Trial” claim flow for authenticated users: show a “Claim Free Trial” button, record the claim server-side, and after claiming show an upgrade prompt that encourages purchasing Premium to remove the watermark (no email automation).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "## 🆓 1 Free Website Trial (One-Time Only)\n\nDetails:\n• 1-page demo website\n• Basic layout\n• Delivered within 24 hours\n• Watermarked: “Demo by PixelNova Studio”\n• No source file access\n\nConditions:\n• Login required\n• Only once per account\n• Upgrade required to remove watermark\n\nAdd button:\n🆓 Claim Free Trial\n\nAfter trial:\nShow popup:\n“Upgrade to Premium to Unlock Full Website & Remove Watermark”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Unauthenticated users attempting to claim are prompted to sign in.",
+        "Authenticated users can claim the free trial exactly once; subsequent attempts show an “already claimed” state.",
+        "After a successful claim, the UI shows an upgrade prompt/modal with the specified message (English)."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a Portfolio page with filter buttons (All | Websites | Logos | Presentations | Business Cards) and a grid of items including the specified example names; include hover interaction with a “Get Similar Design” button and a CTA to order.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Filter Buttons:\nAll | Websites | Logos | Presentations | Business Cards\n\nLogo Grid:\n• Nexora Tech\n• Velvet Aura\n• PowerX Gym\n• Brew Bliss\n• SkyHaven Realty\n• PixelNova Studio\n\nHover effect:\nZoom + “Get Similar Design” button",
+          "CTA:\n🔵 Order My Design Now"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Portfolio filters update the visible items on the page without a reload.",
+        "Each portfolio card has a hover state including a visible “Get Similar Design” action.",
+        "The page includes an “Order My Design Now” CTA that routes into the order flow."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add Legal pages: Terms & Conditions, Refund Policy, and Privacy Policy, including an explicit statement: “No refunds once design work has started.”",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Include:\n\n• Terms & Conditions\n• Refund Policy\n• Privacy Policy\n\nClearly mention:\n“No refunds once design work has started.”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All three legal pages exist and are reachable from the site navigation/footer.",
+        "Refund Policy includes the exact statement “No refunds once design work has started.”"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add an order/request flow (website form pages, not email): authenticated users submit project details, select package/service, and upload a payment screenshot if they choose to pay manually; store the order in the backend and show it in the user Dashboard.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Require:\nUpload Payment Screenshot before order submission.",
+          "After login:\n• Track orders"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Order form captures at minimum: selected service/package, project notes, and optional file upload(s).",
+        "Submitting an order creates a stored record tied to the authenticated user and appears in the Dashboard list.",
+        "If manual payment screenshot is required for a chosen manual-payment option, the form validates that an image was uploaded before submission."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Display the manual UPI/payment number “9911553387” as informational text on relevant pages (e.g., Pricing/Order), with clear wording that work begins after payment confirmation; do not implement any UPI/payment-number processing.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Manual payment number (9911553387) can be displayed as text only (no direct UPI processing).",
+          "Message:\n“Work will begin only after payment confirmation.”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The number “9911553387” appears exactly and is copyable as text.",
+        "The page includes the message “Work will begin only after payment confirmation.” (English).",
+        "No UI suggests that the site can process UPI payments directly (only informational display)."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Add a simple non-AI chatbot/FAQ widget in the bottom-right that opens a guided sales assistant flow using fixed scripts: greeting, qualification questions, package suggestion rules, free trial upsell, payment reminder, and lead capture (name/email/phone). Store captured leads in the backend.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Simple non‑AI chatbot (click-to-open FAQ bot)",
+          "Create an intelligent AI chatbot in bottom-right corner.\n\nStyle:\nMinimal, modern, glowing blue.\n\nBot Name:\nNova AI Assistant 🤖",
+          "Asks qualification questions:\n• What business type?\n• Do you need logo also?\n• Budget range?\n\nSuggests package automatically:\nIf budget < $200 → Suggest Standard\nIf budget ≥ $300 → Recommend Premium 👑\n\nCollect lead info:\nName\nEmail\nPhone"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chat widget is fixed in the bottom-right and can be opened/closed.",
+        "Bot follows a deterministic script (no external AI/LLM calls).",
+        "Budget rule is implemented: < $200 suggests Standard; ≥ $300 recommends Premium; values in-between produce a reasonable neutral suggestion.",
+        "Lead capture form stores submissions in the backend and is viewable in a simple leads list (e.g., in Dashboard)."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Implement basic funnel pages/flow: Landing CTA → Lead capture form → Thank-you/confirmation page; persist the lead and show a confirmation message on completion (no email sending).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Basic funnel pages (landing → form/lead capture → thank-you/confirmation)",
+          "Popup:\n“Get Free Website Demo”\n\nCollect:\nName + Email + Phone\n\nStore in CRM Dashboard."
+        ]
+      },
+      "acceptanceCriteria": [
+        "There is a dedicated lead capture page/form that can be reached from a CTA.",
+        "On successful submission, the user is navigated to a thank-you page that confirms receipt (English).",
+        "Lead submissions are stored in the backend."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Create a post-login Dashboard page that shows: free-trial status (claimed/not claimed), a list of the user’s submitted orders with timestamps/status, and a section listing the user’s submitted leads (if any).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "After login:\n• Redirect to User Dashboard\n• Track orders\n• Track free trial usage"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard shows an explicit “Free Trial: Claimed/Available” indicator.",
+        "Dashboard lists orders (at least package/service + date + status).",
+        "Dashboard page loads data from the backend and handles empty states gracefully (e.g., “No orders yet”)."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Add site navigation (header/footer) linking to Home, Services, Pricing, Portfolio, Legal pages, and authentication controls (Sign in/Sign out); ensure basic SEO metadata (page titles/descriptions) for core pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Fully responsive\nFast loading\nSEO optimized"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigation provides working links to all core pages and legal pages.",
+        "Page titles are set appropriately per route (e.g., “Pricing | PixelNova Studio”).",
+        "Public pages are accessible without login; authenticated-only actions are gated."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Add a coherent, distinctive visual theme direction (still dark + electric blue) with specific component styling rules (buttons, cards, sections, glow/gradients) and apply it consistently without introducing new product features.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-16"
+        ],
+        "quotes": [
+          "Try again"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A single, consistent theme is applied throughout the site (colors, button variants, card styles, section backgrounds).",
+        "Theme remains dark with electric-blue accents and avoids adding unrelated features/content."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for all user-facing text.",
+    "Authentication must use Internet Identity only (no Google login, no phone OTP).",
+    "Payments must use Stripe for actual processing; manual UPI/number payments can only be displayed as text (no UPI processing).",
+    "Do not implement email sending/automation.",
+    "Do not integrate external AI/LLM services; chatbot must be deterministic and scripted.",
+    "Backend must follow a single-actor Motoko architecture."
+  ],
+  "nonGoals": [
+    "Google OAuth/Gmail login.",
+    "Phone-number OTP authentication.",
+    "UPI/payment-number-based payment processing.",
+    "Sending order confirmations or funnel emails.",
+    "Real AI chatbot or third-party chatbot integrations.",
+    "External databases or third-party CRM integrations."
+  ],
+  "imageRequirements": {
+    "required": [
+      "PixelNova Studio wordmark logo, modern geometric style, electric-blue glow on dark background (pixelnova-logo.dim_512x512.png)",
+      "Abstract dark gradient hero background with subtle electric-blue neon glow and soft noise texture (hero-bg.dim_1920x1080.png)",
+      "Set of four simple line icons with neon-blue glow: website, logo, presentation, business card (service-icons-sprite.dim_1024x256.png)"
+    ],
+    "edits": []
+  }
+}

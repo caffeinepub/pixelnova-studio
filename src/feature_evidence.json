@@ -1,0 +1,371 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-responsive-marketing-website-for-pixelnova-studio-with-a-premium-dark-theme-and-electric-blue-accents-using-consistent-typography-spacing-and-motion-across-all-pages",
+      "featureTitle": "Create a responsive marketing website for “PixelNova Studio” with a premium dark theme and electric-blue accents, using consistent typography, spacing, and motion across all pages.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-authentication-using-internet-identity-only-requiring-login-before-a-user-can-claim-the-free-trial-or-submit-an-order-after-successful-login-redirect-the-user-to-a-dashboard-that-displays-the-user-identity-info-available-from-internet-identity",
+      "featureTitle": "Implement authentication using Internet Identity only, requiring login before a user can claim the free trial or submit an order; after successful login, redirect the user to a Dashboard that displays the user identity info available from Internet Identity.",
+      "files": [
+        "frontend/src/components/auth/ProfileSetupModal.tsx",
+        "frontend/src/components/auth/RequireAuth.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-home-page-with-hero-section-headline-subheadline-primary-ctas-start-my-project-view-portfolio-why-choose-us-highlights-services-preview-cards-pricing-preview-reviews-preview-and-a-final-cta-section",
+      "featureTitle": "Build the Home page with: hero section (headline/subheadline), primary CTAs (Start My Project, View Portfolio), “Why Choose Us” highlights, services preview cards, pricing preview, reviews preview, and a final CTA section.",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-services-page-showing-the-four-services-website-design-logo-design-presentation-design-business-card-design-as-animated-cards-each-with-description-price-where-specified-delivery-time-and-an-order-button-that-starts-the-order-flow",
+      "featureTitle": "Create a Services page showing the four services (Website Design, Logo Design, Presentation Design, Business Card Design) as animated cards, each with description, price (where specified), delivery time, and an Order button that starts the order flow.",
+      "files": [
+        "frontend/src/pages/OrderPage.tsx",
+        "frontend/src/pages/ServicesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-pricing-page-that-clearly-presents-the-standard-website-package-and-a-highlighted-premium-website-package-with-the-listed-features-and-prices-include-a-stripe-checkout-action-for-paid-packages-services",
+      "featureTitle": "Create a Pricing page that clearly presents the Standard Website Package and a highlighted Premium Website Package with the listed features and prices; include a Stripe checkout action for paid packages/services.",
+      "files": [
+        "frontend/src/hooks/useStripeCheckout.ts",
+        "frontend/src/pages/PaymentFailurePage.tsx",
+        "frontend/src/pages/PaymentSuccessPage.tsx",
+        "frontend/src/pages/PricingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-one-time-free-website-trial-claim-flow-for-authenticated-users-show-a-claim-free-trial-button-record-the-claim-server-side-and-after-claiming-show-an-upgrade-prompt-that-encourages-purchasing-premium-to-remove-the-watermark-no-email-automation",
+      "featureTitle": "Implement a one-time “Free Website Trial” claim flow for authenticated users: show a “Claim Free Trial” button, record the claim server-side, and after claiming show an upgrade prompt that encourages purchasing Premium to remove the watermark (no email automation).",
+      "files": [
+        "frontend/src/components/trial/FreeTrialClaimCard.tsx",
+        "frontend/src/components/trial/UpgradePromptModal.tsx",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/PricingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-portfolio-page-with-filter-buttons-all-websites-logos-presentations-business-cards-and-a-grid-of-items-including-the-specified-example-names-include-hover-interaction-with-a-get-similar-design-button-and-a-cta-to-order",
+      "featureTitle": "Create a Portfolio page with filter buttons (All | Websites | Logos | Presentations | Business Cards) and a grid of items including the specified example names; include hover interaction with a “Get Similar Design” button and a CTA to order.",
+      "files": [
+        "frontend/src/pages/PortfolioPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-legal-pages-terms-conditions-refund-policy-and-privacy-policy-including-an-explicit-statement-no-refunds-once-design-work-has-started",
+      "featureTitle": "Add Legal pages: Terms & Conditions, Refund Policy, and Privacy Policy, including an explicit statement: “No refunds once design work has started.”",
+      "files": [
+        "frontend/src/components/layout/SiteFooter.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/pages/legal/PrivacyPolicyPage.tsx",
+        "frontend/src/pages/legal/RefundPolicyPage.tsx",
+        "frontend/src/pages/legal/TermsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-order-request-flow-website-form-pages-not-email-authenticated-users-submit-project-details-select-package-service-and-upload-a-payment-screenshot-if-they-choose-to-pay-manually-store-the-order-in-the-backend-and-show-it-in-the-user-dashboard",
+      "featureTitle": "Add an order/request flow (website form pages, not email): authenticated users submit project details, select package/service, and upload a payment screenshot if they choose to pay manually; store the order in the backend and show it in the user Dashboard.",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/OrderPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-display-the-manual-upi-payment-number-9911553387-as-informational-text-on-relevant-pages-e-g-pricing-order-with-clear-wording-that-work-begins-after-payment-confirmation-do-not-implement-any-upi-payment-number-processing",
+      "featureTitle": "Display the manual UPI/payment number “9911553387” as informational text on relevant pages (e.g., Pricing/Order), with clear wording that work begins after payment confirmation; do not implement any UPI/payment-number processing.",
+      "files": [
+        "frontend/src/components/payments/ManualPaymentInfo.tsx",
+        "frontend/src/pages/OrderPage.tsx",
+        "frontend/src/pages/PricingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-simple-non-ai-chatbot-faq-widget-in-the-bottom-right-that-opens-a-guided-sales-assistant-flow-using-fixed-scripts-greeting-qualification-questions-package-suggestion-rules-free-trial-upsell-payment-reminder-and-lead-capture-name-email-phone-store-captured-leads-in-the-backend",
+      "featureTitle": "Add a simple non-AI chatbot/FAQ widget in the bottom-right that opens a guided sales assistant flow using fixed scripts: greeting, qualification questions, package suggestion rules, free trial upsell, payment reminder, and lead capture (name/email/phone). Store captured leads in the backend.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/chatbot/ChatbotWidget.tsx",
+        "frontend/src/components/chatbot/chatbotScript.ts",
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-basic-funnel-pages-flow-landing-cta-lead-capture-form-thank-you-confirmation-page-persist-the-lead-and-show-a-confirmation-message-on-completion-no-email-sending",
+      "featureTitle": "Implement basic funnel pages/flow: Landing CTA → Lead capture form → Thank-you/confirmation page; persist the lead and show a confirmation message on completion (no email sending).",
+      "files": [
+        "frontend/src/pages/funnel/FunnelLandingPage.tsx",
+        "frontend/src/pages/funnel/LeadCapturePage.tsx",
+        "frontend/src/pages/funnel/ThankYouPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-post-login-dashboard-page-that-shows-free-trial-status-claimed-not-claimed-a-list-of-the-user-s-submitted-orders-with-timestamps-status-and-a-section-listing-the-user-s-submitted-leads-if-any",
+      "featureTitle": "Create a post-login Dashboard page that shows: free-trial status (claimed/not claimed), a list of the user’s submitted orders with timestamps/status, and a section listing the user’s submitted leads (if any).",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-site-navigation-header-footer-linking-to-home-services-pricing-portfolio-legal-pages-and-authentication-controls-sign-in-sign-out-ensure-basic-seo-metadata-page-titles-descriptions-for-core-pages",
+      "featureTitle": "Add site navigation (header/footer) linking to Home, Services, Pricing, Portfolio, Legal pages, and authentication controls (Sign in/Sign out); ensure basic SEO metadata (page titles/descriptions) for core pages.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/SiteFooter.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/hooks/usePageMeta.ts",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/PortfolioPage.tsx",
+        "frontend/src/pages/PricingPage.tsx",
+        "frontend/src/pages/ServicesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-coherent-distinctive-visual-theme-direction-still-dark-electric-blue-with-specific-component-styling-rules-buttons-cards-sections-glow-gradients-and-apply-it-consistently-without-introducing-new-product-features",
+      "featureTitle": "Add a coherent, distinctive visual theme direction (still dark + electric blue) with specific component styling rules (buttons, cards, sections, glow/gradients) and apply it consistently without introducing new product features.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/ServicesPage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

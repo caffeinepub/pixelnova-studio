@@ -1,0 +1,529 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "PixelNova Studio marketing site (dark + electric blue) with Internet Identity, Stripe UI, free trial, portfolio, funnel, FAQ bot, and dashboard",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Establish a responsive premium dark theme with electric-blue accents, consistent typography (Poppins + Open Sans), spacing, and smooth reveal motion across all core pages.",
+      "acceptanceCriteria": [
+        "All core pages (Home, Services, Pricing, Portfolio, Legal, Funnel, Dashboard) share a consistent visual system (colors, typography, components).",
+        "Design is fully responsive (mobile/tablet/desktop) and uses smooth, non-distracting animations (e.g., fade/slide on section reveal)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styling entry point implementing the dark + electric-blue theme tokens, typography (Poppins + Open Sans), baseline spacing rules, and shared utilities for consistent layout/motion across pages."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update document head to load Poppins and Open Sans (e.g., via font links) and ensure the base title/metadata aligns with PixelNova Studio branding."
+        },
+        {
+          "path": "frontend/src/components/ui/AnimatedSection.tsx",
+          "operation": "create",
+          "description": "Create a reusable section reveal component (fade/slide-in on view) used across pages for non-distracting motion consistency."
+        },
+        {
+          "path": "frontend/src/components/ui/ThemeComponents.tsx",
+          "operation": "create",
+          "description": "Create shared presentational primitives (e.g., Button/Card/Section wrappers) reflecting the premium dark + electric-blue design system. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the root app shell applying the global theme (dark mode class), consistent layout wrapper, and shared motion patterns across routes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Integrate Internet Identity-only authentication; gate account-required actions; redirect to Dashboard after login; show identity details from profile and II principal; support logout to public Home.",
+      "acceptanceCriteria": [
+        "Unauthenticated users can browse marketing pages but are prompted to sign in when attempting actions that require an account (claim trial, submit order/lead).",
+        "After login, the user lands on a Dashboard page that shows their logged-in status and identifier details available via Internet Identity.",
+        "Logout returns the user to a public page (e.g., Home)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/AuthControls.tsx",
+          "operation": "create",
+          "description": "Implement Sign in/Sign out controls using the existing Internet Identity hook; clear cached data on logout (React Query clear). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAuth.tsx",
+          "operation": "create",
+          "description": "Add an auth gate wrapper that renders children for authenticated users and otherwise prompts sign-in (with a return-to action). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useCurrentUserProfile.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to fetch/save caller user profile using backend methods (getCallerUserProfile/saveCallerUserProfile) while preventing modal flash per authorization component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Prompt first-time logged-in users to enter name/email/phone to populate backend UserProfile for display in Dashboard and header. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "create",
+          "description": "Create the post-login landing Dashboard page showing logged-in status and user identity details (profile name/email/phone; principal as secondary info if needed). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "create",
+          "description": "Create TanStack Router configuration including protected Dashboard route behavior (redirect after successful login when appropriate) and public routes for marketing pages."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Wire the new App/router setup so authentication state is available and routing works; ensure logout navigates back to a public route."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build the Home page with the specified hero copy/CTAs, highlights, previews (services/pricing/reviews), and final CTA section.",
+      "acceptanceCriteria": [
+        "Home page includes the specified hero text and the two CTAs.",
+        "Home page includes the four “Why Choose Us” items.",
+        "Home page includes a reviews section showing multiple review cards (seeded static content is acceptable)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Implement the Home page sections (hero with exact headline/subheadline and CTAs; Why Choose Us with the four items; services preview; pricing preview; reviews preview; final CTA) using shared theme components and AnimatedSection. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register the Home route and ensure CTAs navigate to the required destinations (Start My Project -> funnel/order entry; View Portfolio -> portfolio page)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Create the Services page with four animated service cards including description, price (where specified), delivery time, and an Order action starting the order flow for the selected service/package.",
+      "acceptanceCriteria": [
+        "Services page lists all four services and shows the specified prices for non-website services.",
+        "Clicking an Order button navigates to an order form/checkout step for that selected service/package."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ServicesPage.tsx",
+          "operation": "create",
+          "description": "Create Services page listing Website Design, Logo Design ($10), Presentation Design ($5), Business Card Design ($10) as animated cards with description, price, delivery time, and Order button. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/OrderPage.tsx",
+          "operation": "create",
+          "description": "Create an order entry page that can accept a preselected service/package from Services page navigation state/query params. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register Services and Order routes and ensure Service card Order buttons route into Order with selected offering context."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create a Pricing page presenting Standard and highlighted Premium website packages with listed features and Stripe checkout action; show a clear not-configured state when Stripe is unavailable.",
+      "acceptanceCriteria": [
+        "Pricing page displays both packages with the listed feature bullets and visually highlights Premium as recommended/best value.",
+        "A Stripe checkout flow is available from the Pricing page (or a clear path to it) for paid offerings.",
+        "If Stripe is not configured at runtime, the UI displays a clear configuration/error state instead of failing silently."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PricingPage.tsx",
+          "operation": "create",
+          "description": "Implement Pricing page with Standard ($199) and highlighted Premium ($300) packages, feature bullets exactly as specified, and checkout actions. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useStripeCheckout.ts",
+          "operation": "create",
+          "description": "Add hooks to check Stripe configuration (isStripeConfigured) and create a checkout session (createCheckoutSession) with robust JSON parsing and missing-url error handling, following the Stripe component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PaymentSuccessPage.tsx",
+          "operation": "create",
+          "description": "Create payment success route/page for Stripe redirects; confirm payment completion status using getStripeSessionStatus and show an English confirmation message. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PaymentFailurePage.tsx",
+          "operation": "create",
+          "description": "Create payment failure/cancel route/page for Stripe redirects; show an English failure/cancel message and a way back to Pricing. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register Pricing, /payment-success, and /payment-failure routes and wire checkout actions to use window.location.href for Stripe URLs."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement authenticated one-time free website trial claim UI: prompt sign-in if needed, call server-side claim, show already-claimed state, and display upgrade prompt after claim.",
+      "acceptanceCriteria": [
+        "Unauthenticated users attempting to claim are prompted to sign in.",
+        "Authenticated users can claim the free trial exactly once; subsequent attempts show an “already claimed” state.",
+        "After a successful claim, the UI shows an upgrade prompt/modal with the specified message (English)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/trial/FreeTrialClaimCard.tsx",
+          "operation": "create",
+          "description": "Create a free trial claim UI component that is gated by RequireAuth; calls backend claimFreeTrial; handles already-claimed state; triggers upgrade modal after success. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/trial/UpgradePromptModal.tsx",
+          "operation": "create",
+          "description": "Implement the post-claim modal/popup with the exact message: “Upgrade to Premium to Unlock Full Website & Remove Watermark”. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PricingPage.tsx",
+          "operation": "modify",
+          "description": "Place the FreeTrialClaimCard on Pricing (or another relevant page) to make the flow discoverable; ensure unauthenticated users are prompted to sign in. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Show free-trial claimed/available status on Dashboard and provide an upgrade CTA to Premium. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create a Portfolio page with client-side filters, grid items including specified example names, hover interaction with “Get Similar Design”, and CTA into order flow.",
+      "acceptanceCriteria": [
+        "Portfolio filters update the visible items on the page without a reload.",
+        "Each portfolio card has a hover state including a visible “Get Similar Design” action.",
+        "The page includes an “Order My Design Now” CTA that routes into the order flow."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PortfolioPage.tsx",
+          "operation": "create",
+          "description": "Implement Portfolio page with filters (All | Websites | Logos | Presentations | Business Cards), grid containing the specified example names, hover zoom + “Get Similar Design” action, and an “Order My Design Now” CTA. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register Portfolio route and wire CTA actions to navigate into the order flow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add Legal pages (Terms & Conditions, Refund Policy, Privacy Policy) and ensure the Refund Policy includes the exact statement about refunds.",
+      "acceptanceCriteria": [
+        "All three legal pages exist and are reachable from the site navigation/footer.",
+        "Refund Policy includes the exact statement “No refunds once design work has started.”"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/legal/TermsPage.tsx",
+          "operation": "create",
+          "description": "Create Terms & Conditions page with English-only content consistent with site theme. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/legal/RefundPolicyPage.tsx",
+          "operation": "create",
+          "description": "Create Refund Policy page and include the exact statement: “No refunds once design work has started.” Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/legal/PrivacyPolicyPage.tsx",
+          "operation": "create",
+          "description": "Create Privacy Policy page with English-only content consistent with site theme. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register Legal routes for Terms, Refund Policy, and Privacy Policy."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteFooter.tsx",
+          "operation": "create",
+          "description": "Add footer with links to all three legal pages and core navigation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteHeader.tsx",
+          "operation": "create",
+          "description": "Add header navigation linking to Home/Services/Pricing/Portfolio and authentication controls. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Implement an authenticated order/request flow: capture selected package/service, project notes, optional file uploads, and manual payment screenshot validation when manual payment is chosen; submit to backend; display in Dashboard.",
+      "acceptanceCriteria": [
+        "Order form captures at minimum: selected service/package, project notes, and optional file upload(s).",
+        "Submitting an order creates a stored record tied to the authenticated user and appears in the Dashboard list.",
+        "If manual payment screenshot is required for a chosen manual-payment option, the form validates that an image was uploaded before submission."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/OrderPage.tsx",
+          "operation": "modify",
+          "description": "Implement the order form UI: selected service/package, notes, payment method choice (Stripe vs Manual), optional attachments, and validation requiring a screenshot image when Manual is selected. Use RequireAuth to block access unless logged in. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useOrderSubmission.ts",
+          "operation": "create",
+          "description": "Add a React Query mutation hook that calls submitOrder and handles success/errors; include logic to associate uploaded screenshot/attachments via blob-storage file reference where applicable. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useBlobUpload.ts",
+          "operation": "create",
+          "description": "Implement helper hook to convert File -> bytes and upload using ExternalBlob (blob-storage) via saveFileReference, with optional progress handling. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Render the authenticated user's orders list with at least package/service + date + status; ensure empty states and error states are handled gracefully. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Display manual payment number “9911553387” and the message “Work will begin only after payment confirmation.” as informational text on relevant pages without implementing UPI processing.",
+      "acceptanceCriteria": [
+        "The number “9911553387” appears exactly and is copyable as text.",
+        "The page includes the message “Work will begin only after payment confirmation.” (English).",
+        "No UI suggests that the site can process UPI payments directly (only informational display)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/payments/ManualPaymentInfo.tsx",
+          "operation": "create",
+          "description": "Create a reusable informational block displaying “9911553387” and “Work will begin only after payment confirmation.” with clear labeling that it is manual payment info only. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PricingPage.tsx",
+          "operation": "modify",
+          "description": "Include ManualPaymentInfo in Pricing near alternative/manual payment guidance (informational only). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/OrderPage.tsx",
+          "operation": "modify",
+          "description": "Show ManualPaymentInfo when the user selects Manual payment; ensure no UPI processing UI is implied. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add a bottom-right deterministic scripted chatbot/FAQ widget (no AI) that qualifies users, suggests packages based on budget rules, upsells free trial, reminds about payment, captures lead info, and stores leads to backend; show leads in Dashboard.",
+      "acceptanceCriteria": [
+        "Chat widget is fixed in the bottom-right and can be opened/closed.",
+        "Bot follows a deterministic script (no external AI/LLM calls).",
+        "Budget rule is implemented: < $200 suggests Standard; ≥ $300 recommends Premium; values in-between produce a reasonable neutral suggestion.",
+        "Lead capture form stores submissions in the backend and is viewable in a simple leads list (e.g., in Dashboard)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/chatbot/ChatbotWidget.tsx",
+          "operation": "create",
+          "description": "Implement the bottom-right toggleable chatbot widget (“Nova AI Assistant” label as provided), deterministic scripted flow (greeting → qualification → package suggestion → free trial upsell → payment reminder → lead capture). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/chatbot/chatbotScript.ts",
+          "operation": "create",
+          "description": "Define the fixed script, state machine, and budget suggestion rules (< $200 Standard; ≥ $300 Premium; in-between neutral) with English-only copy. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useChatbotLead.ts",
+          "operation": "create",
+          "description": "Add React Query mutation to submit chatbot lead details (submitChatbotLead) including optional chat history; handle success/validation errors gracefully. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Mount ChatbotWidget globally so it appears on all pages as a fixed bottom-right widget. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Add a simple section listing the user's submitted chatbot leads (if available via dashboard data) with empty states. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Implement a basic funnel flow: Landing CTA → lead capture form → thank-you page; store the lead; show confirmation message (no email).",
+      "acceptanceCriteria": [
+        "There is a dedicated lead capture page/form that can be reached from a CTA.",
+        "On successful submission, the user is navigated to a thank-you page that confirms receipt (English).",
+        "Lead submissions are stored in the backend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/funnel/FunnelLandingPage.tsx",
+          "operation": "create",
+          "description": "Create a funnel landing page/section with a strong CTA leading to the lead capture form (“Get Free Website Demo” as specified). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/funnel/LeadCapturePage.tsx",
+          "operation": "create",
+          "description": "Create lead capture form collecting Name/Email/Phone and submitting via submitFormLead; include client-side validation and loading/error states. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/funnel/ThankYouPage.tsx",
+          "operation": "create",
+          "description": "Create thank-you/confirmation page shown after successful lead submission with an English confirmation message. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useFunnelLead.ts",
+          "operation": "create",
+          "description": "Add React Query mutation for submitFormLead and navigation to ThankYou on success. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register funnel routes (landing, lead form, thank-you) and wire key CTAs (Home hero/final CTA and other relevant CTAs) to the funnel entry."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Build a post-login Dashboard showing free-trial status, user orders list with timestamps/status, and a list of the user’s submitted leads (if any), with graceful empty states.",
+      "acceptanceCriteria": [
+        "Dashboard shows an explicit “Free Trial: Claimed/Available” indicator.",
+        "Dashboard lists orders (at least package/service + date + status).",
+        "Dashboard page loads data from the backend and handles empty states gracefully (e.g., “No orders yet”)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useDashboard.ts",
+          "operation": "create",
+          "description": "Add React Query hook to fetch dashboard data via getDashboard and normalize empty states/loading/error UI needs. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Render dashboard sections: free-trial indicator; orders list (package/service + date + status); leads lists (form leads and/or general leads as available), with clear empty states and consistent styling. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Ensure Dashboard route is registered and protected by RequireAuth so it is only accessible after Internet Identity login."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Add responsive site header/footer navigation to all core pages and legal pages; include auth controls; implement basic per-page SEO metadata (titles/descriptions) and ensure public pages remain accessible without login while gating authenticated-only actions.",
+      "acceptanceCriteria": [
+        "Navigation provides working links to all core pages and legal pages.",
+        "Page titles are set appropriately per route (e.g., “Pricing | PixelNova Studio”).",
+        "Public pages are accessible without login; authenticated-only actions are gated."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapping routed pages with SiteHeader and SiteFooter, consistent spacing, and container widths. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Include nav links to Home/Services/Pricing/Portfolio and a Legal link group (or footer-only legal links) plus Internet Identity auth controls. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Ensure footer includes links to Terms, Refund Policy, and Privacy Policy. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/usePageMeta.ts",
+          "operation": "create",
+          "description": "Add a small hook/helper to set document title and meta description per route/page in English (e.g., “Pricing | PixelNova Studio”). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Use the page meta hook to set appropriate title/description for Home. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ServicesPage.tsx",
+          "operation": "modify",
+          "description": "Use the page meta hook to set appropriate title/description for Services. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PricingPage.tsx",
+          "operation": "modify",
+          "description": "Use the page meta hook to set appropriate title/description for Pricing. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PortfolioPage.tsx",
+          "operation": "modify",
+          "description": "Use the page meta hook to set appropriate title/description for Portfolio. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Use the page meta hook to set appropriate title/description for Dashboard and keep it auth-protected. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap routed content with SiteLayout and ensure auth-gated actions (claim trial, order submission) use RequireAuth prompts rather than blocking general browsing. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Define and apply a distinctive, coherent component styling direction (dark + electric-blue) for buttons, cards, sections, and glow/gradients, consistently across the site without adding new features.",
+      "acceptanceCriteria": [
+        "A single, consistent theme is applied throughout the site (colors, button variants, card styles, section backgrounds).",
+        "Theme remains dark with electric-blue accents and avoids adding unrelated features/content."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Refine and document theme styling rules (colors, gradients/glows, button variants, card styling, section backgrounds) and ensure consistent application site-wide."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme (as needed) to support electric-blue accent utilities, glow shadows, and consistent radii/spacing aligned with the premium dark theme."
+        },
+        {
+          "path": "frontend/src/components/ui/ThemeComponents.tsx",
+          "operation": "modify",
+          "description": "Ensure shared components implement the finalized styling rules and are consistently used across pages. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/generated/pixelnova-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add generated asset: PixelNova Studio wordmark logo, modern geometric style, electric-blue glow on dark background (frontend/public/assets/generated/pixelnova-logo.dim_512x512.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add generated asset: Abstract dark gradient hero background with subtle electric-blue neon glow and soft noise texture (frontend/public/assets/generated/hero-bg.dim_1920x1080.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/service-icons-sprite.dim_1024x256.png",
+          "operation": "create",
+          "description": "Add generated asset: Set of four simple line icons with neon-blue glow: website, logo, presentation, business card (frontend/public/assets/generated/service-icons-sprite.dim_1024x256.png)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Wire hero background and brand logo into the Home page using the generated assets at frontend/public/assets/generated/hero-bg.dim_1920x1080.png and frontend/public/assets/generated/pixelnova-logo.dim_512x512.png. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ServicesPage.tsx",
+          "operation": "modify",
+          "description": "Use the generated service icon sprite frontend/public/assets/generated/service-icons-sprite.dim_1024x256.png for service cards to reinforce consistent visual language. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}
